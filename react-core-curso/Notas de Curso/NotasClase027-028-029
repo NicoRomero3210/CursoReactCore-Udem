@@ -1,0 +1,69 @@
+Para manipular objetos tenemos dos funciones muy usadas
+
+Object.assign() y el operador spread que se usa con tres ptos seguidos ...
+
+supongamos tenemos tres objetos simples
+
+const persona = {
+    nombre: 'Pablo',
+    apellido: 'Perez',
+    info: {
+        sexo: 'Lobo de mar',
+        estatura: '1.75'
+    }
+}
+
+const razonSocial = {
+    pais: 'Bulgaria',
+    ciudad: 'Buenos Aires'
+}
+
+const direccion = {
+    calle: 'Rivadavia',
+    altura: '1877'
+}
+
+const result = Object.assign(
+
+    {},
+    pesrona,
+    razonSocial,
+    direccion
+
+)
+
+Estas funciones no toman bien los objetos dentro de otros objetos, pero esto se puede arreglar haciendo lo siguiente
+
+const result = Object.assign(
+
+    {},
+    persona,
+    razonSocial,
+    direccion
+
+)
+
+const result.info = Object.assign(
+    persona.info
+)
+
+Ahora con el operador spread
+
+const resultadoSpread = {
+
+    ...persona,
+    ...razonSocial,
+    ...direccion
+
+}
+
+resultadoSpread.info = {
+
+    ...persona.info
+
+}
+
+
+
+
+

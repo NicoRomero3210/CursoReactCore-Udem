@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import App from './App.js'
 /*
 //const nombre = "Hola Loco"
 
@@ -43,7 +44,7 @@ const TarjetaFruta = (props) => {
         
 }
 */
-
+/*
 class TarjetaFruta extends React.Component{
 
     constructor(){
@@ -69,6 +70,7 @@ class TarjetaFruta extends React.Component{
     //SI HAGO ASI CON FUNCIONES DE FLECHAS EL THIS NO SE NECESITA ENLAZAR CON LA FUNCION YA QUE ESTO 
     //LO HACEN POR NATURALEZA LAS ARROW FUNCTION, IGUAL, ESOT SOLO FUNCIONA BIEN CUANDO HAGO LO DE CREATE-REACT-APP
     //SINO, DEBERIA CONFIGURAR BABEL Y WEBPACK Y TODA LA COSA PARA QUE FUNQUE BIEN
+    //PARA QUE FINCIONE ESTO DEBERIA SACAR EL STATE DEL CONSTRUCTOR
     agregarItem = ()=>{
 
         this.setState({cantidad: this.state.cantidad + 1})
@@ -117,7 +119,7 @@ class TarjetaFruta extends React.Component{
         }
 
 }
-
+/*
 
 const App = () => {
    
@@ -129,7 +131,11 @@ const App = () => {
     )
 }
 
+*/
+
+
 ReactDOM.render(<App/>,document.getElementById('root'))
+
 
 
 
