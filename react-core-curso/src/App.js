@@ -1,54 +1,69 @@
 import React,{Component} from 'react'
 
-const styles = {
+//ACA VEO COMO UTILZAR LAS CHILDREN PROPS, QUE VENDRIA A SER TODO LO QUE SE PONGA ENTRE LAS ETIQUETAS DEL
+//COMPONENTE QUE CREE, EN ESTE CASO TITLE, PARA ESO SE NECESITA USAR ETIQUETA DE APERTURA Y CIERRE DEL COMPONENTE
+//PARA MIRAR COMO SE RENDIRIZAN PRIMERO LAS PROPS CHILDRENS(YA QUE LO PUSIMOS PRIMERO) Y LUEGO EL H2 QUE SE 
+//LE PASA POR LA PROP TEXT
+const Title = (props) => {
 
-    background: 'yellow',
-    height: '200px',
-    padding:'1em',
-    boxSizing:'border-box'
+    const styles = {
+
+        padding: '0.3em',
+        color: '#FFF',
+        background: props.uiColor,
+        borderRadius: '0.3em',
+        textAlign: 'center',
+        fontSize: '50px'
+
+    }
+
+    console.log(props.children)
+
+    return(
+
+        <div>
+        <h1 style = {styles}>{props.children}</h1>
+        <div>{props.text}</div>
+        </div>
+
+    )
+
 }
-
-
 
 class App extends Component{
 
     state = {
 
-        x:0,
-        y:0
-    
-    }
-
-    manejador = (event) => {
-
-        this.setState({
-
-            x: event.clientX,
-            y: event.clientY
-
-        })    
-    
-    }
-
-    manejador2 = () => {
-
-        alert(`Componente x: ${this.state.x}\nComponente y: ${this.state.y}`)
+        uiColor: 'purple',
+        text:'Anda a la mierda'
 
     }
 
     render(){
-        
-        return(
-            <div style = {styles} onMouseMove = {this.manejador} onClick = {this.manejador2}>
 
-                {this.state.x} <br/>
-                {this.state.y}
+        return(
+
+            <div>
+
+                <Title uiColor = {this.state.uiColor} text={<h2>Pingo</h2>}>
+
+                    Super <em>Nijna</em>: {this.state.text}
+
+                </Title>
 
             </div>
 
         )
 
     }
+
 }
 
 export default App
+
+
+
+
+
+
+
