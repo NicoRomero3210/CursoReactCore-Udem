@@ -1,43 +1,43 @@
-import React,{Component} from 'react'
+import React,{Component,Fragment} from 'react'
 
-//ACA VEO COMO UTILZAR LAS CHILDREN PROPS, QUE VENDRIA A SER TODO LO QUE SE PONGA ENTRE LAS ETIQUETAS DEL
-//COMPONENTE QUE CREE, EN ESTE CASO TITLE, PARA ESO SE NECESITA USAR ETIQUETA DE APERTURA Y CIERRE DEL COMPONENTE
-//PARA MIRAR COMO SE RENDIRIZAN PRIMERO LAS PROPS CHILDRENS(YA QUE LO PUSIMOS PRIMERO) Y LUEGO EL H2 QUE SE 
-//LE PASA POR LA PROP TEXT
-const Title = (props) => {
+//ACA LO QUE HACEMOS ES USAR LOS FRAGMENTS CON REACT, ESTO SERIA USAR ESAS ETIQUETAS PARA EVITAR RENDERIZAR
+//COMPONENTES CON ARRAYS, ASI REACT LO HACE DE FORMA NATURA(ESTO ES UNA OPCION PARA EVITAR USAR LOS ARRAYS,
+//PERO  NO SIEMPTRE ES LA MAS OPTIMA)
 
-    const styles = {
-
-        padding: '0.3em',
-        color: '#FFF',
-        background: props.uiColor,
-        borderRadius: '0.3em',
-        textAlign: 'center',
-        fontSize: '50px'
-
-    }
-
-    console.log(props.children)
+const ListaComputacion = () => {
 
     return(
 
-        <div>
-        <h1 style = {styles}>{props.children}</h1>
-        <div>{props.text}</div>
-        </div>
+        <Fragment>
+
+            <li>Memoria</li>
+            <li>CPU</li>
+            <li>ALU</li>
+
+        </Fragment>
 
     )
 
 }
 
-class App extends Component{
 
-    state = {
+const ListaRopa = () => {
 
-        uiColor: 'purple',
-        text:'Anda a la mierda'
+    return(
 
-    }
+        <Fragment>
+
+            <li>Calzones</li>
+            <li>Medias</li>
+            <li>Remeras</li>
+
+        </Fragment>
+
+    )
+
+}
+
+class App extends Component {
 
     render(){
 
@@ -45,11 +45,8 @@ class App extends Component{
 
             <div>
 
-                <Title uiColor = {this.state.uiColor} text={<h2>Pingo</h2>}>
-
-                    Super <em>Nijna</em>: {this.state.text}
-
-                </Title>
+                <ListaComputacion/>
+                <ListaRopa/>
 
             </div>
 
@@ -57,13 +54,7 @@ class App extends Component{
 
     }
 
+
 }
 
 export default App
-
-
-
-
-
-
-
