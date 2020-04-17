@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useDebugValue } from 'react'
 
 const Header = () => {
   const styles = {
@@ -26,14 +26,12 @@ const Header = () => {
   )
 }
 
-/* Este es nuestro Hook personalizado, con el lo que hacemos es cargar logica reutilizable por otros componentes
-, en este caso nosotros estamos viendo el tamaño y ancho de nuestras ventanitas de la web.
-  Hay que fijarse bien que al final pasamos los datos que estamos manipulando para que este sea accesible
-  para los otros componentes */
-
 const useSizes = () => {
   const [ width, setWith ] = useState(window.innerWidth)
   const [ height, setHeight ] = useState(window.innerHeight)
+
+  useDebugValue('Primer Hook') /* Con esto podemos ponerle indicadores a nuestro hooks a la hora de 
+                                  debuggear la app, asi sabemos a que hook estamos apuntando*/
 
   // Agregar listener
   const handleResize = () => {
