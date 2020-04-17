@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { useDebounce } from 'use-debounce'
+import React, { useState, useEffect, useDebugValue } from 'react'
 
 const Header = () => {
   const styles = {
@@ -15,7 +14,7 @@ const Header = () => {
   return (
     <header style={styles}>
       <h1>
-        Hook useRef
+        Hooks Personalizados
         <span
           role='img'
           aria-label='hook emoji'
@@ -27,35 +26,42 @@ const Header = () => {
   )
 }
 
-const App = () => {
-  const [ name, setName ] = useState('')
-  const [ search ] = useDebounce(name, 1000)
-  const [ products, setProducts ] = useState([])
+const useSizes = () => {
+  const [ width, setWith ] = useState(window.innerWidth)
+  const [ height, setHeight ] = useState(window.innerHeight)
+
+  useDebugValue('Primer Hook')
+
+  // Agregar listener
+  const handleResize = () => {
+    setWith(window.innerWidth)
+    setHeight(window.innerHeight)
+  }
 
   useEffect(() => {
-    fetch('https://universidad-react-api-test.luxfenix.now.sh/products?name=' + name)
-      .then(res => res.json())
-      .then(data => setProducts(data.products))
-  }, [ search ])
+    window.addEventListener('resize', handleResize)
 
-  const handleInput = (e) => {
-    setName(e.target.value)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+
+  return {
+    width,
+    height
   }
+}
+
+const App = () => {
+  const { height, width } = useSizes()
 
   return (
     <div>
       <Header />
-      <input
-        type='text'
-        onChange={handleInput}
-      />
-      <ul>
-        {products.map(product => (
-          <li key={product.id}>
-            { product.name }
-          </li>
-        ))}
-      </ul>
+      <h1>
+        Width: { width }px  Height: { height }px
+      </h1>
     </div>
   )
 }

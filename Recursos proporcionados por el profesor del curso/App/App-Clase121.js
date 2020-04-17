@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { useDebounce } from 'use-debounce'
+import React, { useState, useEffect } from 'react'
 
 const Header = () => {
   const styles = {
@@ -15,7 +14,7 @@ const Header = () => {
   return (
     <header style={styles}>
       <h1>
-        Hook useRef
+        Hooks Personalizados
         <span
           role='img'
           aria-label='hook emoji'
@@ -27,35 +26,49 @@ const Header = () => {
   )
 }
 
-const App = () => {
-  const [ name, setName ] = useState('')
-  const [ search ] = useDebounce(name, 1000)
-  const [ products, setProducts ] = useState([])
+const useFetch = (url, initialState = []) => {
+  const [ data, setData ] = useState(initialState)
+  const [ isFetching, setFetching ] = useState(true)
 
   useEffect(() => {
-    fetch('https://universidad-react-api-test.luxfenix.now.sh/products?name=' + name)
+    setFetching(true)
+    fetch(url)
       .then(res => res.json())
-      .then(data => setProducts(data.products))
-  }, [ search ])
+      .then(data => {
+        setData(data)
+        setFetching(false)
+      })
+  }, [ url ])
 
-  const handleInput = (e) => {
-    setName(e.target.value)
-  }
+  return [
+    data,
+    isFetching
+  ]
+
+}
+
+const App = () => {
+  const [ clicks, setClicks ] = useState(1)
+  const [ user, isLoading ] = useFetch('https://jsonplaceholder.typicode.com/users/' + clicks, {}) 
+
+  const add = () => setClicks(clicks + 1)
 
   return (
     <div>
       <Header />
-      <input
-        type='text'
-        onChange={handleInput}
-      />
-      <ul>
-        {products.map(product => (
-          <li key={product.id}>
-            { product.name }
+      { isLoading && <h1>Cargando...</h1> }
+      <h1>{ user.name }</h1>
+      <p>{ user.phone }</p>
+      <button onClick={add}>
+        Clicks ({ clicks })
+      </button>
+      {/* <ul>
+        {users.map(user => (
+          <li key={user.id}>
+            { user.name }
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   )
 }

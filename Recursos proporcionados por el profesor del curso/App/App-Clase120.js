@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { useDebounce } from 'use-debounce'
+import React, { useState, useEffect } from 'react'
 
 const Header = () => {
   const styles = {
@@ -15,7 +14,7 @@ const Header = () => {
   return (
     <header style={styles}>
       <h1>
-        Hook useRef
+        Hooks Personalizados
         <span
           role='img'
           aria-label='hook emoji'
@@ -27,32 +26,37 @@ const Header = () => {
   )
 }
 
-const App = () => {
-  const [ name, setName ] = useState('')
-  const [ search ] = useDebounce(name, 1000)
-  const [ products, setProducts ] = useState([])
+const useFetch = (url) => {
+  const [ data, setData ] =  useState([])
+  const [ isFetching, setFetching ] = useState(true)
 
   useEffect(() => {
-    fetch('https://universidad-react-api-test.luxfenix.now.sh/products?name=' + name)
+    fetch(url)
       .then(res => res.json())
-      .then(data => setProducts(data.products))
-  }, [ search ])
+      .then(data => {
+        setData(data)
+        setFetching(false)
+      })
+  }, [ url ])
 
-  const handleInput = (e) => {
-    setName(e.target.value)
-  }
+  return [
+    data,
+    isFetching
+  ]
+
+}
+
+const App = () => {
+  const [ users, isLoading ] = useFetch('https://jsonplaceholder.typicode.com/users')
 
   return (
     <div>
       <Header />
-      <input
-        type='text'
-        onChange={handleInput}
-      />
+      { isLoading && <h1>Cargando...</h1> }
       <ul>
-        {products.map(product => (
-          <li key={product.id}>
-            { product.name }
+        {users.map(user => (
+          <li key={user.id}>
+            { user.name }
           </li>
         ))}
       </ul>
