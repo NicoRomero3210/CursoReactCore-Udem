@@ -1,0 +1,1 @@
+En las clases que tienen carpetas se pone la refactorizacion de las carpetas y archivos en la carpeta src, por lo que se necesita dejarlas asi

@@ -1,0 +1,27 @@
+cuando exporto sin default para importarlo debo hacerlo por destructuracion
+
+8
+
+abcd
+0123  4
+
+
+
+10 - 4 = 6 - 4 = 2 
+
+13
+
+"fcyb ry pbabpüzüragb ehr yyruñ qrfqr qragéb rf ry jréqñqréb pbabpüzüragb"
+
+"a á b c d e é f g h i í j k l m n ñ o ó p q r s t u ú ü v w x y z" 33 p = 20 s = 23
+
+8
+
+13+8 = 21
+
+27+13 = 40-33 = 7
+
+1 + 13 = 14
+
+
+con 8 de desp desde la a = 0 voy hasta la g = 8

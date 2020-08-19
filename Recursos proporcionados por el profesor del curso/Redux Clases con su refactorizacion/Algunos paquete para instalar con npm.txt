@@ -1,0 +1,7 @@
+npm i redux logger
+
+npm i redux-thunk
+
+se usa en el store.js, con esto podemos realizar middlewares que permiten realizar acciones con flujo asincrono.
+
+npm i react-spinners
